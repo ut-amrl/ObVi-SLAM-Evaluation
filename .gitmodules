@@ -1,0 +1,22 @@
+[submodule "ut_vslam"]
+	path = ut_vslam
+	url = https://github.com/ut-amrl/ut_vslam.git
+	branch = docker/test
+[submodule "ros-noetic-docker"]
+	path = ros-noetic-docker
+	url = https://github.com/ut-amrl/ros-noetic-docker.git
+	branch = taijing/ltov-slam/dev
+[submodule "amrl_msgs"]
+	path = amrl_msgs
+	url = https://github.com/ut-amrl/amrl_msgs.git
+[submodule "yolov5-ros"]
+	path = yolov5-ros
+	url = https://github.com/ut-amrl/yolov5-ros.git
+[submodule "OA-SLAM"]
+	path = OA-SLAM
+	url = https://github.com/ut-amrl/OA-SLAM.git
+	branch = stereo/feature_stereo
+[submodule "ORB_SLAM2"]
+	path = ORB_SLAM2
+	url = https://github.com/TieJean/ORB_SLAM2.git
+	branch = writeTimestamps

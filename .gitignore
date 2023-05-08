@@ -1,0 +1,7 @@
+.cache
+.config
+.ros
+.local
+.viminfo
+.bashrc
+.bash_history
