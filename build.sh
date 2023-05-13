@@ -1,11 +1,14 @@
-cd ~/amrl_msgs
+cd ~/LTOV-SLAM-Evaluation/amrl_msgs
 make -j
 
-cd ~/ORB_SLAM2
+cd ~/LTOV-SLAM-Evaluation/ORB_SLAM2
 sh build.sh && sh build_ros.sh
 
-cd ~/ORB_SLAM3
+cd ~/LTOV-SLAM-Evaluation/ORB_SLAM3
 sh build.sh && sh build_ros.sh
 
-cd ~/OA-SLAM
+cd ~/LTOV-SLAM-Evaluation/OA-SLAM
 sh build.sh
+
+cd ~/LTOV-SLAM-Evaluation/ut_vslam
+make -j4
