@@ -9,6 +9,7 @@
 [submodule "amrl_msgs"]
 	path = amrl_msgs
 	url = https://github.com/ut-amrl/amrl_msgs.git
+	branch = orbSlamSwitchTraj
 [submodule "yolov5-ros"]
 	path = yolov5-ros
 	url = https://github.com/ut-amrl/yolov5-ros.git
@@ -20,3 +21,7 @@
 	path = ORB_SLAM2
 	url = https://github.com/TieJean/ORB_SLAM2.git
 	branch = writeTimestamps
+[submodule "ORB_SLAM3"]
+	path = ORB_SLAM3
+	url = https://github.com/ut-amrl/ORB_SLAM3.git
+	branch = amandaMultisession

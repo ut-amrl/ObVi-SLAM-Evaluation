@@ -1,7 +1,9 @@
 .cache
+.cmake
 .config
 .ros
 .local
 .viminfo
 .bashrc
 .bash_history
+

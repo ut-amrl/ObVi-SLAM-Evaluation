@@ -14,7 +14,8 @@ git submodule status
 Should see the following branches:
 * OA-SLAM (remotes/origin/stereo/feature_stereo)
 * ORB_SLAM2 (remotes/origin/writeTimestamps)
-* amrl_msgs (heads/master)
+* ORB_SLAM3 (remotes/origin/amandaMultisession)
+* amrl_msgs (remotes/origin/orbSlamSwitchTraj)
 * ros-noetic-docker (heads/taijing/ltov-slam/dev)
 * ut_vslam (heads/docker/test)
 * yolov5-ros (heads/master)
@@ -38,5 +39,10 @@ Start a shell inside the container:
 ```
 docker exec -it $USER-noetic-ltov-slam-app-1 $SHELL
 ```
+Stop docker:
+```
 docker stop $USER-noetic-ltov-slam-app-1
 ```
+
+## ROS
+Run ROS inside the container
