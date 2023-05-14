@@ -66,7 +66,7 @@ git clone --recursive -b podman https://github.com/ut-amrl/LTOV-SLAM-Evaluation.
 * yolov5-ros (heads/master)
 
 ## Podman
-First, refer to the podman website for podman installation in. Unlike the `docker` branch, currently this branch assumes you have CDI support from the NVIDIA CONTAINER TOOLKIT (see https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#container-device-interface-cdi-support for further podman CDI instructions). In `ros-noetic-docker/noetic/ltov-slam-podman/compose.yaml`, make sure you have correct paths in "volumes".
+First, refer to the podman website for podman installation in. Unlike the `docker` branch, currently this branch assumes you have CDI support from the [NVIDIA CONTAINER TOOLKIT for podman](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#id9). In `ros-noetic-docker/noetic/ltov-slam-podman/compose.yaml`, make sure you have correct paths in "volumes".
 
 Pull docker image to podman (select `docker.io:tiejean/tiejean/noetic-ltov-slam:evaluation` if you're prompted):
 ```
