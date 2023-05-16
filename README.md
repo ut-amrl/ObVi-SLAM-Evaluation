@@ -92,7 +92,7 @@ First, refer to the podman website for podman installation in. You also need to 
 
 Pull docker image to podman (select `docker.io:tiejean/tiejean/noetic-ltov-slam:evaluation` if you're prompted):
 ```
-podman pull tiejean/tiejean/noetic-ltov-slam:evaluation
+podman pull tiejean/noetic-ltov-slam:evaluation
 ```
 
 Launch container:
