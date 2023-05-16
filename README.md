@@ -88,7 +88,7 @@ Currently, the scripts assume that you have a file structure like following when
 ```
 
 ## Podman
-First, refer to the podman website for podman installation in. You also need to install [podman-compose](https://github.com/containers/podman-compose), which can be installed in a vm. Unlike the `docker` branch, currently this branch assumes you have CDI support from the [NVIDIA CONTAINER TOOLKIT for podman](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#id9). In `ros-noetic-docker/noetic/ltov-slam-podman/compose.yaml`, make sure you have correct paths in "volumes".
+First, refer to the podman website for podman installation in. You also need to install [podman-compose](https://github.com/containers/podman-compose), which can be installed in a venv. Unlike the `docker` branch, currently this branch assumes you have CDI support from the [NVIDIA CONTAINER TOOLKIT for podman](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#id9). In `ros-noetic-docker/noetic/ltov-slam-podman/compose.yaml`, make sure you have correct paths in "volumes".
 
 Pull docker image to podman (select `docker.io:tiejean/tiejean/noetic-ltov-slam:evaluation` if you're prompted):
 ```
