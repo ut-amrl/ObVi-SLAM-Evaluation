@@ -1,9 +1,16 @@
 .cache
 .cmake
+.conda
 .config
 .ros
 .local
+.nv
 .viminfo
 .bashrc
 .bash_history
+catkin_ws/.catkin_tools
+catkin_ws/build
+catkin_ws/devel
+catkin_ws/logs
+
 

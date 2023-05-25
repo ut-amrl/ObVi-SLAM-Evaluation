@@ -25,3 +25,10 @@
 	path = ORB_SLAM3
 	url = https://github.com/ut-amrl/ORB_SLAM3.git
 	branch = amandaMultisession
+[submodule "catkin_ws/src/LeGO-LOAM-1"]
+	path = catkin_ws/src/LeGO-LOAM-1
+	url = https://github.com/ut-amrl/LeGO-LOAM-1.git
+	branch = writeResultsWithTimestampsToFile
+[submodule "coda"]
+	path = coda
+	url = https://github.com/ut-amrl/coda.git
