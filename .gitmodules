@@ -32,3 +32,4 @@
 [submodule "coda"]
 	path = coda
 	url = https://github.com/ut-amrl/coda.git
+	branch = amandaRunLegoLoam
