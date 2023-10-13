@@ -1,111 +1,61 @@
-# TODOS
-* Add LeGO-LOAM repo
-* Make filesystem consistent between docker & podman
+# ObVi-SLAM Evaluation
 
-# Docker Usage
+## Overview
 
-## Submodules
-Init submodules:
-```
-git submodule update --init --recursive
-```
-Update submodules:
-```
-git submodule update --remote
-```
-Check all submodules are updated to the correct branches:
-```
-git submodule status
-```
-Should see the following branches:
-* OA-SLAM (remotes/origin/stereo/feature_stereo)
-* ORB_SLAM2 (remotes/origin/writeTimestamps)
-* ORB_SLAM3 (remotes/origin/amandaMultisession)
-* amrl_msgs (remotes/origin/orbSlamSwitchTraj)
-* ros-noetic-docker (heads/taijing/ltov-slam/dev)
-* ut_vslam (heads/docker/test)
-* yolov5-ros (heads/master)
+In the evaluation, we compared ObVi-SLAM against [ORB-SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3), [OA-SLAM](https://gitlab.inria.fr/tangram/oa-slam), and [DROID-SLAM](https://github.com/princeton-vl/DROID-SLAM). We used the `ObViSLAMEvaluation` branch from research dev fork of them under [ORB-SLAM3](https://github.com/ut-amrl/ORB_SLAM3/tree/ObViSLAMEvaluation), [OA-SLAM](https://github.com/ut-amrl/oa-slam/tree/ObViSLAMEvaluation), and [DROID-SLAM](https://github.com/ut-amrl/DROID-SLAM/tree/ObViSLAMEvaluation). DROID-SLAM uses conda to set up its environment; For ORB-SLAM3 and OA-SLAM, we provide our docker setup inside `ros-noetic-docker`.
 
-## File Structure
-Currently, the scripts assume that you have a file structure like following when you mount your data:
-```
-${HOME}/data/calibration
-${HOME}/data/lego_loam_out (going to be redundant after adding LeGO-LOAM)
-${HOME}/data/yolo_models
-${HOME}/data/original_data
+
+## Docker Setup
+
+You can follow the installation and running instructions given by ORB-SLAM3, OA-SLAM, and DROID-SLAM. You can find We also provide our docker setup. It requires the [Docker Engine](https://docs.docker.com/engine/install/ubuntu), [Docker Compose](https://docs.docker.com/compose/install/linux/), and [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html). `ros-noetic-docker` contains separate docker files for ORB-SLAM3 and OA-SLAM. For DROID-SLAM, we used conda to set up the environment (see the `ObViSLAMEvaluation` branch from our research dev fork of [DROID-SLAM](https://github.com/ut-amrl/DROID-SLAM/tree/ObViSLAMEvaluation)) If you'd like to use our evaluation scripts to run the experiment, use Dockerfile under `obvislam-eval`, which handles environemnt setup for ORB-SLAM3, OA-SLAM, and DROID-SLAM.
+
+To build the docker image:
+```Bash
+./build.py obvislam-eval
 ```
 
-## Docker
-Check the README page of `ros-noetic-docker` for docker installation details. In `ros-noetic-docker/noetic/ltov-slam/compose.yaml`, make sure you have correct paths in "volumes". For example, if your data directory is under `my-data-dir`, change the default path to `my-data-dir:/home/${CONTAINER_USER}/data`.
- 
-To log-in to the `docker` group:
+Now, we need to mount necessary files. In our convenient scripts, we assume the project is mounted under `/root/ObVi-SLAM-Evaluation` and the data are mounted under `/root/ObVi-SLAM-Evaluation/data`. To mount files, specify the followings inside the volume session of `ros-noetic-docker/noetic/obvislam-eval/compose.yaml`:
+```YAML
+volumes:
+      - <path_to_ObVi-SLAM-Evaluation_root_dir>:/root/ObVi-SLAM-Evaluation
+      - <path_to_data_root_dir>:/root/ObVi-SLAM-Evaluation/data
 ```
-newgrp docker
-```
-Inside `ros-noetic-docker`, build the docker image by:
-```
-./build.py ltov-slam
-```
-Launch docker container:
-```
-./launch.py ltov-slam
-```
-Start a shell inside the container: 
-```
-docker exec -it $USER-noetic-ltov-slam-app-1 $SHELL
-```
-Stop docker:
-```
-docker stop $USER-noetic-ltov-slam-app-1
+This will mount the entire folders under `<path_to_ObVi-SLAM-Evaluation_root_dir>` and `<path_to_data_root_dir>` to the container. To be safer, you can specify the read/write permission for different subfolders. For example:
+```YAML
+volumes:
+      - <path_to_ObVi-SLAM-Evaluation_root_dir>:/root/ObVi-SLAM-Evaluation
+      - <path_to_data_root_dir>:/root/ObVi-SLAM-Evaluation/data/original_data:ro
+      - <path_to_data_root_dir>:/root/ObVi-SLAM-Evaluation/data/oa_slam_in:ro
+      - <path_to_data_root_dir>:/root/ObVi-SLAM-Evaluation/data/oa_slam_out
+      - ...
 ```
 
-## ROS
-Run ROS inside the container
-
-# Podman Usage
-
-## Repository setup
-Clone the `podman` branch of the repository:
+To lanuch the docker container:
+```Bash
+./launch.py obvislam-eval
 ```
-git clone --recursive -b podman https://github.com/ut-amrl/LTOV-SLAM-Evaluation.git
-```
-`git submodule status` should give you the following branches
-* OA-SLAM (remotes/origin/stereo/feature_stereo)
-* ORB_SLAM2 (remotes/origin/writeTimestamps)
-* ORB_SLAM3 (remotes/origin/amandaMultisession)
-* amrl_msgs (remotes/origin/orbSlamSwitchTraj)
-* ros-noetic-docker (heads/taijing/ltov-slam/podman)
-* ut_vslam (heads/docker/test)
-* yolov5-ros (heads/master)
+You can verify the container is running by `docker ps`. You should see a container running with the name `${YOUR_USERNAME}-noetic-obvislam-eval-app-1`.
 
-## File Structure
-Currently, the scripts assume that you have a file structure like following when you mount your data:
-```
-/root/LTOV-SLAM-Evaluation/data/calibration
-/root/LTOV-SLAM-Evaluation/data/lego_loam_out (going to be redundant after adding LeGO-LOAM)
-/root/LTOV-SLAM-Evaluation/data/yolo_models
-/root/LTOV-SLAM-Evaluation/data/original_data
+To start a shell session as the root user"
+```Bash
+docker exec -it -u root $USER-noetic-obvislam-eval-app-1 $SHELL
 ```
 
-## Podman
-First, refer to the podman website for podman installation in. You also need to install [podman-compose](https://github.com/containers/podman-compose), which can be installed in a venv. Unlike the `docker` branch, currently this branch assumes you have CDI support from the [NVIDIA CONTAINER TOOLKIT for podman](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#id9). In `ros-noetic-docker/noetic/ltov-slam-podman/compose.yaml`, make sure you have correct paths in "volumes".
+You need to run `source /.dockerenv` to set up environmental variables properly inside the container. Alternatively, you can also refer to this solution [here](https://github.com/ut-amrl/ros-noetic-docker#environment-setup).
 
-Pull docker image to podman (select `docker.io:tiejean/tiejean/noetic-ltov-slam:evaluation` if you're prompted):
-```
-podman pull tiejean/noetic-ltov-slam:evaluation
-```
-
-Launch container:
-```
-./launch_podman.py ltov-slam-podman
+You can exit from the session through `Ctrl-D`. You can stop the container by:
+```Bash
+docker stop $USER-noetic-obvislam-eval-app-1
 ```
 
-Start a new terminal as the container root (Note that unlike docker, it's important that you run as container's root; Otherwise you may encounter permission problem):
-```
-podman exec -it -u root ltov-slam-podman_app_1 $SHELL
-```
+## Object Detector
+We relied on [YOLOV5](https://github.com/ultralytics/yolov5) and fine-tuned a model for object detection. Refer to [this page] for object detector setup.
 
-Stop container:
-```
-ltov-slam-podman_app_1
-```
+## Running DROID-SLAM
+See the [DROID-SLAM](https://github.com/ut-amrl/DROID-SLAM/tree/ObViSLAMEvaluation) page.
+
+## Running ORB-SLAM3
+The `ObViSLAMEvaluation` relies on the [amrl_msgs](https://github.com/ut-amrl/amrl_msgs/tree/orbSlamSwitchTraj) to save trajectories. 
+
+
+<!-- export LD_LIBRARY_PATH=/usr/local/lib/python3.8/dist-packages/nvidia/cudnn/lib:$LD_LIBRARY_PATH -->
