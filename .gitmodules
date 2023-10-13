@@ -1,22 +1,23 @@
-[submodule "ut_vslam"]
+[submodule "ObVi-SLAM"]
 	path = ut_vslam
-	url = https://github.com/ut-amrl/ut_vslam.git
-	branch = docker/test
+	url = https://github.com/ut-amrl/ObVi-SLAM.git
+	branch = main
 [submodule "ros-noetic-docker"]
 	path = ros-noetic-docker
 	url = https://github.com/ut-amrl/ros-noetic-docker.git
-	branch = taijing/ltov-slam/podman
+	branch = ObViSLAMEvaluation
 [submodule "amrl_msgs"]
 	path = amrl_msgs
 	url = https://github.com/ut-amrl/amrl_msgs.git
 	branch = orbSlamSwitchTraj
-[submodule "yolov5-ros"]
-	path = yolov5-ros
-	url = https://github.com/ut-amrl/yolov5-ros.git
+[submodule "yolov5"]
+	path = yolov5
+	url = https://github.com/ut-amrl/yolov5.git
+	branch = ROS
 [submodule "OA-SLAM"]
 	path = OA-SLAM
 	url = https://github.com/ut-amrl/OA-SLAM.git
-	branch = stereo/feature_stereo
+	branch = ObViSLAMEvaluation
 [submodule "ORB_SLAM2"]
 	path = ORB_SLAM2
 	url = https://github.com/TieJean/ORB_SLAM2.git
@@ -24,12 +25,4 @@
 [submodule "ORB_SLAM3"]
 	path = ORB_SLAM3
 	url = https://github.com/ut-amrl/ORB_SLAM3.git
-	branch = amandaMultisession
-[submodule "catkin_ws/src/LeGO-LOAM-1"]
-	path = catkin_ws/src/LeGO-LOAM-1
-	url = https://github.com/ut-amrl/LeGO-LOAM-1.git
-	branch = writeResultsWithTimestampsToFile
-[submodule "coda"]
-	path = coda
-	url = https://github.com/ut-amrl/coda.git
-	branch = amandaRunLegoLoam
+	branch = ObViSLAMEvaluation
