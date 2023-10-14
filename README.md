@@ -48,14 +48,30 @@ You can exit from the session through `Ctrl-D`. You can stop the container by:
 docker stop $USER-noetic-obvislam-eval-app-1
 ```
 
-## Object Detector
-We relied on [YOLOV5](https://github.com/ultralytics/yolov5) and fine-tuned a model for object detection. Refer to [this page] for object detector setup.
-
 ## Running DROID-SLAM
 See the [DROID-SLAM](https://github.com/ut-amrl/DROID-SLAM/tree/ObViSLAMEvaluation) page.
 
 ## Running ORB-SLAM3
-The `ObViSLAMEvaluation` relies on the [amrl_msgs](https://github.com/ut-amrl/amrl_msgs/tree/orbSlamSwitchTraj) to save trajectories. 
+The `ObViSLAMEvaluation` relies on the [amrl_msgs](https://github.com/ut-amrl/amrl_msgs/tree/orbSlamSwitchTraj) to save trajectories. To install this package:
+```Bash
+git clone https://github.com/ut-amrl/amrl_msgs.git
+cd amrl_msgs
+git checkout objectDetectionMsgs # Or the orbSlamSwitchTraj branch
+export ROS_PACKAGE_PATH=`pwd`:$ROS_PACKAGE_PATH
+make
+```
+See the [ORB-SLAM3](https://github.com/ut-amrl/ORB_SLAM3/tree/ObViSLAMEvaluation) page for further instructions.
 
+## Object Detector
+Object detector is neccessary to run any object-SLAM algorithms including ObVi-SLAM and OA-SLAM. We relied on [YOLOV5](https://github.com/ultralytics/yolov5) and fine-tuned a model for object detection. You can refer to its README page to set up YOLOv5. Refer to our [YOLOv5 page](https://github.com/ut-amrl/yolov5/blob/ROS/README.md) for the ROS object detector setup. You can download a fine-tuned model [here](https://drive.google.com/file/d/1aMkPj4NEWnSGbPKYld_6dnm9TSgYZwzR/view?usp=sharing) that detects the four following classes: treetrunks, trashcans, lampposts, and benches. To run the detector for the evaluation:
+```Bash
+python detect_ros.py --weights <path_to_weight_file>  --img 960 --conf 0.2
+```
+
+## Running OA-SLAM
+See the [OA-SLAM](https://github.com/ut-amrl/OA-SLAM/tree/ObViSLAMEvaluation) page. 
+
+## Running ObVi-SLAM
+See the [ObVi-SLAM](https://github.com/ut-amrl/ObVi-SLAM) page.
 
 <!-- export LD_LIBRARY_PATH=/usr/local/lib/python3.8/dist-packages/nvidia/cudnn/lib:$LD_LIBRARY_PATH -->
