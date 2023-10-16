@@ -26,3 +26,7 @@
 	path = ORB_SLAM3
 	url = https://github.com/ut-amrl/ORB_SLAM3.git
 	branch = ObViSLAMEvaluation
+[submodule "SLAMUtilsScripts"]
+	path = SLAMUtilsScripts
+	url = https://github.com/ut-amrl/SLAMUtilsScripts.git
+	branch = main
