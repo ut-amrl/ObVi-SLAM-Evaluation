@@ -20,7 +20,7 @@
 	branch = ObViSLAMEvaluation
 [submodule "ORB_SLAM2"]
 	path = ORB_SLAM2
-	url = https://github.com/TieJean/ORB_SLAM2.git
+	url = https://github.com/amrl/ORB_SLAM2.git
 	branch = writeTimestamps
 [submodule "ORB_SLAM3"]
 	path = ORB_SLAM3
